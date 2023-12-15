@@ -1,0 +1,83 @@
+[
+    {
+        "label": "mysql.connector",
+        "kind": 6,
+        "isExtraImport": true,
+        "importPath": "mysql.connector",
+        "description": "mysql.connector",
+        "detail": "mysql.connector",
+        "documentation": {}
+    },
+    {
+        "label": "mydb",
+        "kind": 5,
+        "importPath": "# main",
+        "description": "# main",
+        "peekOfCode": "mydb = mysql.connector.connect(\n    host=\"localhost\",\n    user=\"root\",\n    password=\"\",\n    database=\"fazenda_bd\"\n)\nmycursor = mydb.cursor()\nmycursor.execute(\"SELECT * FROM producao_leite\")\nmyresult = mycursor.fetchall()\nmyresult_count = mycursor.rowcount",
+        "detail": "# main",
+        "documentation": {}
+    },
+    {
+        "label": "mycursor",
+        "kind": 5,
+        "importPath": "# main",
+        "description": "# main",
+        "peekOfCode": "mycursor = mydb.cursor()\nmycursor.execute(\"SELECT * FROM producao_leite\")\nmyresult = mycursor.fetchall()\nmyresult_count = mycursor.rowcount\nnumeros_animais = []\n    for row in myresult:\n    numeros_animais.append(row[1])\n    def binary_search(array, elemento, inicio, fim):\n        if inicio > fim:\n        return -1",
+        "detail": "# main",
+        "documentation": {}
+    },
+    {
+        "label": "myresult",
+        "kind": 5,
+        "importPath": "# main",
+        "description": "# main",
+        "peekOfCode": "myresult = mycursor.fetchall()\nmyresult_count = mycursor.rowcount\nnumeros_animais = []\n    for row in myresult:\n    numeros_animais.append(row[1])\n    def binary_search(array, elemento, inicio, fim):\n        if inicio > fim:\n        return -1\nmeio = (inicio + fim) // 2\n if elemento == array[meio]:",
+        "detail": "# main",
+        "documentation": {}
+    },
+    {
+        "label": "myresult_count",
+        "kind": 5,
+        "importPath": "# main",
+        "description": "# main",
+        "peekOfCode": "myresult_count = mycursor.rowcount\nnumeros_animais = []\n    for row in myresult:\n    numeros_animais.append(row[1])\n    def binary_search(array, elemento, inicio, fim):\n        if inicio > fim:\n        return -1\nmeio = (inicio + fim) // 2\n if elemento == array[meio]:\n return meio",
+        "detail": "# main",
+        "documentation": {}
+    },
+    {
+        "label": "numeros_animais",
+        "kind": 5,
+        "importPath": "# main",
+        "description": "# main",
+        "peekOfCode": "numeros_animais = []\n    for row in myresult:\n    numeros_animais.append(row[1])\n    def binary_search(array, elemento, inicio, fim):\n        if inicio > fim:\n        return -1\nmeio = (inicio + fim) // 2\n if elemento == array[meio]:\n return meio\n if elemento < array[meio]:",
+        "detail": "# main",
+        "documentation": {}
+    },
+    {
+        "label": "meio",
+        "kind": 5,
+        "importPath": "# main",
+        "description": "# main",
+        "peekOfCode": "meio = (inicio + fim) // 2\n if elemento == array[meio]:\n return meio\n if elemento < array[meio]:\n return binary_search(array, elemento, inicio, meio - 1)\n else:\n return binary_search(array, elemento, meio + 1, fim)\nnumero_animal = int(input('Digite o número de identificação do animal: '))\nresult = binary_search(numeros_animais, numero_animal, 0, myresult_count - 1)\nif result != -1:",
+        "detail": "# main",
+        "documentation": {}
+    },
+    {
+        "label": "numero_animal",
+        "kind": 5,
+        "importPath": "# main",
+        "description": "# main",
+        "peekOfCode": "numero_animal = int(input('Digite o número de identificação do animal: '))\nresult = binary_search(numeros_animais, numero_animal, 0, myresult_count - 1)\nif result != -1:\n print(\"\\n\")\n print(\"O Registro do animal está na posição \", str(result), \"do banco de\nDados!\")\n link = (\"SELECT * FROM producao_leite WHERE identificacao =\" +\nstr(numero_animal))\n mycursor1 = mydb.cursor()\n mycursor1.execute(link)",
+        "detail": "# main",
+        "documentation": {}
+    },
+    {
+        "label": "result",
+        "kind": 5,
+        "importPath": "# main",
+        "description": "# main",
+        "peekOfCode": "result = binary_search(numeros_animais, numero_animal, 0, myresult_count - 1)\nif result != -1:\n print(\"\\n\")\n print(\"O Registro do animal está na posição \", str(result), \"do banco de\nDados!\")\n link = (\"SELECT * FROM producao_leite WHERE identificacao =\" +\nstr(numero_animal))\n mycursor1 = mydb.cursor()\n mycursor1.execute(link)\n myresult1 = mycursor.fetchall()",
+        "detail": "# main",
+        "documentation": {}
+    }
+]

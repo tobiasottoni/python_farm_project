@@ -1,0 +1,101 @@
+//Here is MySql code to create the database to project of example
+
+CREATE TABLE employees (
+    id INT(10) PRIMARY KEY AUTO_INCREMENT,
+    name VARCHAR(50),
+    cpf VARCHAR(14) NOT NULL,
+    job_description VARCHAR(50),
+    salary DOUBLE(10,2),
+    hire_date DATE,
+    active INT(1) NOT NULL DEFAULT 1
+);
+
+INSERT INTO employees
+(name, cpf, job_description, salary, hire_date)
+VALUES
+('João da Silva', '123.456.789-00', 'Farmer', 1200.00, '2003-01-02'),
+('Mário de Jesus', '987.654.321.00', 'Beekeeper', 1100.00, '2010-09-05'),
+('Pablo Fontes', '889.995.351.00', 'Milker', 1300.00, '2004-09-25'),
+('Maria Aparecida Alcântara', '123.987.258-03', 'Packer', 1150.00, '2013-05-02'),
+('Ricardo Lemos', '173.486.689-60', 'Veterinarian', 2400.00, '2003-01-01');
+
+CREATE TABLE milk_production (
+    id INT(10) PRIMARY KEY AUTO_INCREMENT,
+    identification INT(10),
+    species VARCHAR(30),
+    last_milking DATE NULL,
+    milk_temperature INT(2),
+    liters_milked DOUBLE(10,2),
+    inseminations INT(2) NULL,
+    estimated_birth DATE NULL,
+    drying_time INT(2)
+);
+
+INSERT INTO milk_production
+(identification, species, last_milking, milk_temperature, liters_milked, inseminations, estimated_birth, drying_time)
+VALUES
+(102985, 'Girolando', '2020-10-28', 30, 15.2, 0, NULL, 15),
+(102985, 'Gir', '2020-11-01', 29, 20.2, 1, '2020-12-20', 15);
+
+CREATE TABLE products (
+    id INT(10) PRIMARY KEY AUTO_INCREMENT,
+    name VARCHAR(50),
+    product_type INT(1),
+    stock_quantity INT(10),
+    price DOUBLE(10,2),
+    active INT(1) DEFAULT 1
+);
+
+INSERT INTO products
+(name, product_type, stock_quantity, price)
+VALUES
+('Milk L', 1, 350, 2.00),
+('Cheese Unit', 2, 30, 8.00),
+('Corn KG', 3, 200, 0.20),
+('Honey 180ml', 4, 30, 4.50);
+
+CREATE TABLE equipment (
+    id INT(10) PRIMARY KEY AUTO_INCREMENT,
+    name VARCHAR(50),
+    purchase_date DATE,
+    equipment_type VARCHAR(1),
+    active INT(1) DEFAULT 1
+);
+
+INSERT INTO equipment
+(name, purchase_date, equipment_type)
+VALUES
+('Tractor', '2020-03-15', 1),
+('Strada Pickup', '2020-09-25', 1),
+('Grass Grinder', '2019-02-05', 2);
+
+CREATE TABLE planting (
+    id INT(10) PRIMARY KEY AUTO_INCREMENT,
+    plot_identification VARCHAR(50),
+    grain_type ENUM('Corn', 'Soy'),
+    harvest_date DATE,
+    active INT(1) DEFAULT 1
+);
+
+INSERT INTO planting
+(plot_identification, grain_type, harvest_date)
+VALUES
+('Plot 1', 'Corn', '2020-12-19'),
+('Plot 2', 'Corn', '2020-11-19'),
+('Plot 3', 'Soy', '2021-01-05'),
+('Plot 4', 'Soy', '2021-01-02');
+
+CREATE TABLE retailers (
+    id INT(10) PRIMARY KEY AUTO_INCREMENT,
+    name VARCHAR(50),
+    phone VARCHAR(20),
+    product_type INT(1),
+    active INT(1) DEFAULT 1
+);
+
+INSERT INTO retailers
+(name, phone, product_type)
+VALUES
+('Cheese House', '(31) 98572-2356', 2),
+('Honey and Co.', '(31) 98282-2891', 4),
+('Nova Holanda Dairy', '(31) 99854-3574', 1);

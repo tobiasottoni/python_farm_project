@@ -1,0 +1,115 @@
+    This production addresses a problem situation where a farmer
+want to start developing an application for managing your property and
+resources as a whole; thus aiming to make greater use of time and
+resources.
+
+    The situation is important for our knowledge as students,
+because the development of such an application works as a case that really
+presents in the daily lives of today's systems analysts and software engineers.
+
+    To carry out such development, initial projections were made
+through UML, the MySQL Database and the development of a binary search with
+the Python programming language.
+
+    In this first model we guide the Register and Insert Use cases
+that the application will initially need. Where the ADMIN Actor's main
+functions, register employees, enter milk production data, register products,
+insert planting data, register retailers and register equipment.
+
+    In this second Use Case, we provide guidance on searches in the
+system, where the ADMIN Actor has primary functions; search for employees, search
+total payroll, fetch cows and milking data, get the average
+milking, search for products from stock, search for equipment by type, search for retailers, and
+search for harvest data.
+
+    After this, we plan the Class Diagram between products and
+retailers, where a product may have none or multiple retailers, but a retailer has
+must have at least one product. We also take advantage of and exemplify the functions
+of registering product, searching for product, registering retailer and searching for retailer.
+
+We started this development with a problem, where the client
+requested that the name of the database be “farm_db” and our version of MySQL
+(8.0.21) did not support such a name. This made it necessary for us to change it to “farm_db”.
+After this process, we began creating the database and tables using the
+information passed on in the project and prior analysis.
+We created and developed the following script for the database to be
+created and some initial data has already been inserted.
+
+For some database query functions, ready-made scripts have been created to facilitate work and development, 
+such as the ones below:
+
+Here, fazenTECH can list employees, their respective positions, salaries, and admission dates, ordering alphabetically 
+by name.
+
+sql
+SELECT name AS 'Employee Name', job_description AS 'Employee Position',
+salary AS 'Employee Salary', DATE_FORMAT(hire_date, "%d/%m/%Y") AS 'Hire Date'
+FROM employees WHERE active = 1 ORDER BY name ASC;
+Here, fazenTECH retrieves the sum of all active employees' salaries to calculate the total payroll.
+
+sql
+SELECT SUM(salary) AS 'Total Payroll' FROM employees WHERE active = 1;
+Here, fazenTECH lists cows, their specifications, and milking data.
+
+sql
+SELECT identification, species, DATE_FORMAT(last_milking, "%d/%m/%Y") AS 'Last Milking',
+milk_temperature, liters_milked FROM milk_production;
+Here, fazenTECH calculates the average liters milked across all records.
+
+sql
+SELECT AVG(liters_milked) AS 'Average Liters Milked' FROM milk_production;
+Here, fazenTECH retrieves all products from the inventory and lists them with quantity and price.
+
+sql
+SELECT name AS 'Product Name', product_type AS 'Type', stock_quantity AS 'Quantity', price
+AS 'Selling Price' FROM products;
+Here, fazenTECH retrieves all milk-type products from the inventory and lists them with quantity and price.
+
+sql
+SELECT name AS 'Product Name', product_type AS 'Type', stock_quantity AS 'Quantity', price
+AS 'Selling Price' FROM products WHERE product_type = 1;
+Here, fazenTECH retrieves all equipment when the category is vehicles (1).
+
+sql
+SELECT name AS 'Equipment Name', DATE_FORMAT(purchase_date, "%d/%m/%Y")
+AS 'Purchase Date' FROM equipment WHERE equipment_type = 1;
+Here, fazenTECH seeks a list of retailers selling cheese, joining to retrieve the product name from the products table.
+
+sql
+SELECT retailers.name AS 'Retailer Name', retailers.phone AS 'Retailer Contact',
+products.name AS 'Products Sold'
+FROM retailers INNER JOIN products WHERE retailers.active = 1 AND
+retailers.product_type = 2 AND retailers.product_type =
+products.product_type ORDER BY retailers.name;
+Here, fazenTECH retrieves all probable harvests scheduled between the current date and the next 30 days.
+
+sql
+SELECT plot_identification AS 'Planting Plot', grain_type AS 'Planted Grain',
+DATE_FORMAT(harvest_date, "%d/%m/%Y") AS 'Scheduled Harvest Date'
+FROM planting WHERE active = 1 AND harvest_date BETWEEN curdate() AND
+date_add(curdate(), interval 30 day);
+
+    In it we request the “mysql.conector” library, after that
+we create a connection to the database, look for animal numbers and
+we insert it into the “animal_numbers” array. After this we created a function to search
+binary, which takes the array, the element to be searched for, the beginning of the search, the end, and in the
+inside the function we discover the means of the search so that we can create the parameters
+and circumstances ideas for the correct search.
+
+    We request an input using the string “animal_number”, we execute
+the function, and when testing the result it returns whether the animal was found; seeking out
+also the other details of the animal in the database, and if not
+returns that the animal record was not found.
+
+    Concluding the work, we verified that the implementation of FazenTECH
+is functional and operational. Through our initial studies we can see that the
+creation of the tool can help small producers organize and
+make the most productive and exponential use of their products.
+With FazenTECH already operational, we can carry out new studies
+for improvements, complements or additions of new functions to the system
+initially developed.
+
+    With this we end together understanding a little more about the
+UML modeling studies, we understand more about the UML language
+Python programming, we study and interact with a dilemma in Brazilian society and
+citizenship, and we know more concepts about object-oriented development.
